@@ -1,0 +1,175 @@
+# pytorch_lightning==2.4.0
+seed_everything: 3407
+trainer:
+  accelerator: gpu
+  strategy:
+    class_path: pytorch_lightning.strategies.DeepSpeedStrategy
+    init_args:
+      accelerator: null
+      zero_optimization: true
+      stage: 2
+      remote_device: null
+      offload_optimizer: false
+      offload_parameters: false
+      offload_params_device: cpu
+      nvme_path: /local_nvme
+      params_buffer_count: 5
+      params_buffer_size: 100000000
+      max_in_cpu: 1000000000
+      offload_optimizer_device: cpu
+      optimizer_buffer_count: 4
+      block_size: 1048576
+      queue_depth: 8
+      single_submit: false
+      overlap_events: true
+      thread_count: 1
+      pin_memory: false
+      sub_group_size: 1000000000000
+      contiguous_gradients: true
+      overlap_comm: true
+      allgather_partitions: true
+      reduce_scatter: true
+      allgather_bucket_size: 200000000
+      reduce_bucket_size: 200000000
+      zero_allow_untested_optimizer: true
+      logging_batch_size_per_gpu: auto
+      config: null
+      logging_level: 30
+      parallel_devices: null
+      cluster_environment: null
+      loss_scale: 0.0
+      initial_scale_power: 16
+      loss_scale_window: 1000
+      hysteresis: 2
+      min_loss_scale: 1
+      partition_activations: false
+      cpu_checkpointing: false
+      contiguous_memory_optimization: false
+      synchronize_checkpoint_boundary: false
+      load_full_weights: false
+      precision_plugin: null
+      process_group_backend: null
+  devices: 1
+  num_nodes: 1
+  precision: bf16-mixed
+  logger:
+    class_path: pytorch_lightning.loggers.WandbLogger
+    init_args:
+      name: predict_retriever_random
+      save_dir: logs/predict_retriever_random
+      version: null
+      offline: false
+      dir: null
+      id: null
+      anonymous: null
+      project: null
+      log_model: false
+      experiment: null
+      prefix: ''
+      checkpoint_name: null
+      job_type: null
+      config: null
+      entity: null
+      reinit: null
+      tags: null
+      group: null
+      notes: null
+      magic: null
+      config_exclude_keys: null
+      config_include_keys: null
+      mode: null
+      allow_val_change: null
+      resume: null
+      force: null
+      tensorboard: null
+      sync_tensorboard: null
+      monitor_gym: null
+      save_code: null
+      fork_from: null
+      resume_from: null
+      settings: null
+  callbacks:
+  - class_path: pytorch_lightning.callbacks.LearningRateMonitor
+    init_args:
+      logging_interval: step
+      log_momentum: false
+      log_weight_decay: false
+  - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+    init_args:
+      dirpath: null
+      filename: null
+      monitor: Recall@10_val
+      verbose: true
+      save_last: true
+      save_top_k: 1
+      save_weights_only: false
+      mode: max
+      auto_insert_metric_name: true
+      every_n_train_steps: null
+      train_time_interval: null
+      every_n_epochs: null
+      save_on_train_epoch_end: null
+      enable_version_counter: true
+  - class_path: pytorch_lightning.callbacks.EarlyStopping
+    init_args:
+      monitor: Recall@10_val
+      min_delta: 0.0
+      patience: 5
+      verbose: true
+      mode: max
+      strict: true
+      check_finite: true
+      stopping_threshold: null
+      divergence_threshold: null
+      check_on_train_epoch_end: null
+      log_rank_zero_only: false
+  fast_dev_run: false
+  max_epochs: null
+  min_epochs: null
+  max_steps: 800000
+  min_steps: null
+  max_time: null
+  limit_train_batches: null
+  limit_val_batches: null
+  limit_test_batches: null
+  limit_predict_batches: null
+  overfit_batches: 0.0
+  val_check_interval: null
+  check_val_every_n_epoch: 1
+  num_sanity_val_steps: null
+  log_every_n_steps: null
+  enable_checkpointing: null
+  enable_progress_bar: null
+  enable_model_summary: null
+  accumulate_grad_batches: 1
+  gradient_clip_val: 1.0
+  gradient_clip_algorithm: null
+  deterministic: null
+  benchmark: null
+  inference_mode: true
+  use_distributed_sampler: true
+  profiler: null
+  detect_anomaly: false
+  barebones: false
+  plugins: null
+  sync_batchnorm: false
+  reload_dataloaders_every_n_epochs: 0
+  default_root_dir: null
+model:
+  model_name: google/byt5-small
+  lr: 0.0001
+  warmup_steps: 2000
+  num_retrieved: 100
+data:
+  data_path: data/leandojo_benchmark_4/random/
+  corpus_path: data/leandojo_benchmark_4/corpus.jsonl
+  num_negatives: 3
+  num_in_file_negatives: 1
+  batch_size: 8
+  eval_batch_size: 64
+  max_seq_len: 1024
+  num_workers: 4
+optimizer: null
+lr_scheduler: null
+return_predictions: null
+ckpt_path: /path/to/your/checkpoint

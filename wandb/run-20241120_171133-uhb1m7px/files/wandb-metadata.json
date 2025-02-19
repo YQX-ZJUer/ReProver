@@ -1,0 +1,48 @@
+{
+  "os": "Linux-5.15.0-112-generic-x86_64-with-glibc2.35",
+  "python": "3.11.10",
+  "startedAt": "2024-11-20T09:11:33.606084Z",
+  "args": [
+    "predict",
+    "--config",
+    "retrieval/confs/cli_lean4_random.yaml"
+  ],
+  "program": "/root/autodl-tmp/yaoqixu/ReProver/retrieval/main.py",
+  "codePath": "retrieval/main.py",
+  "git": {
+    "remote": "https://github.com/YQX-ZJUer/ReProver.git",
+    "commit": "b5c1e5bff3281c33132841bdaddb7a56f450b1bc"
+  },
+  "email": "yaoqixu@zju.edu.cn",
+  "root": "/root/autodl-tmp/yaoqixu/ReProver",
+  "host": "autodl-container-7b33469e91-316ddcb7",
+  "username": "root",
+  "executable": "/root/miniconda3/envs/YQXReProver/bin/python",
+  "codePathLocal": "retrieval/main.py",
+  "cpu_count": 64,
+  "cpu_count_logical": 128,
+  "gpu": "NVIDIA A800 80GB PCIe",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "22951700881408",
+      "used": "5114172715008"
+    }
+  },
+  "memory": {
+    "total": "945517776896"
+  },
+  "cpu": {
+    "count": 64,
+    "countLogical": 128
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA A800 80GB PCIe",
+      "memoryTotal": "85899345920",
+      "cudaCores": 6912,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.4"
+}

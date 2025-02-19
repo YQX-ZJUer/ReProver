@@ -5,7 +5,7 @@ import json
 import random
 import torch
 import tempfile
-import networkx as nx
+import networkx as nx #用于创建、操作和研究复杂网络结构
 from loguru import logger
 from lean_dojo import Pos
 import pytorch_lightning as pl
@@ -13,10 +13,11 @@ from dataclasses import dataclass, field
 from pytorch_lightning.utilities.deepspeed import (
     convert_zero_checkpoint_to_fp32_state_dict,
 )
-from transformers import get_constant_schedule_with_warmup
+from transformers import get_constant_schedule_with_warmup 
+#从 transformers 库中导入 get_constant_schedule_with_warmup 函数，该函数通常用于创建一个带有预热阶段的学习率调度器，在深度学习的优化过程中可以先从一个较小的学习率开始，然后保持不变，帮助模型更好地收敛
 from deepspeed.ops.adam import FusedAdam, DeepSpeedCPUAdam
-from typing import Optional, List, Dict, Any, Tuple, Generator
-from pytorch_lightning.strategies.deepspeed import DeepSpeedStrategy
+from typing import Optional, List, Dict, Any, Tuple, Generator #提供一些类型注解
+from pytorch_lightning.strategies.deepspeed import DeepSpeedStrategy #DeepSpeed加速训练
 
 
 Example = Dict[str, Any]

@@ -1,17 +1,20 @@
-"""Ligihtning module for the premise retriever."""
+"""Ligihtning module for the premise retriever.""" #
 
 import os
 import torch
-import pickle
+import pickle # 可用于序列化和反序列化 Python 对象，方便存储和加载数据
 import numpy as np
-from tqdm import tqdm
-from lean_dojo import Pos
+from tqdm import tqdm #能以进度条的形式显示代码的执行进度，尤其是在处理大量数据或长时间的训练时，方便观察进度
+from lean_dojo import Pos 
 from loguru import logger
 import pytorch_lightning as pl
-import torch.nn.functional as F
-from typing import List, Dict, Any, Tuple, Union
-from transformers import AutoModelForTextEncoding, AutoTokenizer
-
+import torch.nn.functional as F #构建神经网络的函数
+from typing import List, Dict, Any, Tuple, Union #提供类型注解
+from transformers import AutoModelForTextEncoding, AutoTokenizer 
+"""
+AutoModelForTextEncoding 会自动选择最适合文本编码任务的模型架构。使用这个类时，不需要指定模型的具体架构，只需提供模型的名称或路径，它将自动加载相应的模型。
+AutoTokenizer 用于文本的分词(Tokenization)。
+"""
 from common import (
     Premise,
     Context,
@@ -20,7 +23,7 @@ from common import (
     load_checkpoint,
     zip_strict,
     cpu_checkpointing_enabled,
-)
+) #从自己写的common.py中导入
 
 
 torch.set_float32_matmul_precision("medium")
