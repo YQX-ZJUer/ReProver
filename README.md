@@ -1,4 +1,4 @@
-YQX-ReProver update：2025.4.16
+YQX-ReProver update：20250416 
 
 # Retrieval-Augmented Prover (ReProver)
 
