@@ -16,7 +16,7 @@ class CLI(LightningCLI): #继承自LightningCLI接口
 
 
 def main() -> None:
-    logger.info(f"PID: {os.getpid()}")#会将当前进程的进程 ID 作为信息输出到日志中，使用 f-string 格式化字符串将进程 ID 嵌入到输出信息中，格式为 "PID: [进程 ID]"。
+    logger.info(f"PID: {os.getpid()}")#会将当前进程的进程 ID 作为信息输出到日志中，格式为 "PID: [进程 ID]"。
     cli = CLI(PremiseRetriever, RetrievalDataModule)#主要内容是model的PremiseRetriever类，datamodule的RetrievalDataModule类
     logger.info("Configuration: \n", cli.config)
 

@@ -1,5 +1,5 @@
 """Script to download LeanDojo Benchmark and LeanDojo Benchmark 4 into `./data`."""
-
+# 从网上（Zenodo）下载数据集并生成本地data目录，这个脚本需要在训练之前手动执行
 import os
 import argparse
 from hashlib import md5
@@ -14,7 +14,7 @@ DOWNLOADS = {
 }
 
 
-def check_md5(filename: str, gt_hashcode: str) -> bool:
+def check_md5(filename: str, gt_hashcode: str) -> bool:# md5哈希值验证文件是否完整，分块读取大文件并计算哈希值，避免内存溢出，确保文件完整性
     """
     Check the MD5 of a file against the ground truth.
     """
@@ -34,7 +34,7 @@ def check_md5(filename: str, gt_hashcode: str) -> bool:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data-path", type=str, default="data")
+    parser.add_argument("--data-path", type=str, default="data")# 这里默认目录是“data”
     args = parser.parse_args()
     logger.info(args)
 
